@@ -1,46 +1,31 @@
 [
     {
         "id": "selection",
-        "children":
-            [
-                { "caption": "-" },
-                {
-                    "caption": "Add surroundings",
-                    "command": "surround_add_with_prompt",
-                },
-                {
-                    "caption": "Change surroundings",
-                    "command": "surround_change_with_prompt",
-                },
-                {
-                    "caption": "Delete surroundings",
-                    "command": "surround_delete_with_prompt",
-                },
-            ]
+        "children": [
+            { "caption": "-" },
+            { "caption": "Add surroundings", "command": "surround_add_with_prompt" },
+            { "caption": "Change surroundings", "command": "surround_change_with_prompt" },
+            { "caption": "Delete surroundings", "command": "surround_delete_with_prompt" },
+        ]
     },
     {
         "id": "preferences",
-        "children":
-        [
+        "children": [
             {
                 "id": "package-settings",
-                "children":
-                [
+                "children": [
                     {
                         "caption": "Surround",
-                        "children":
-                        [
+                        "children": [
                             {
                                 "caption": "Settings",
-                                "command": "edit_settings", "args":
-                                {
+                                "command": "edit_settings", "args": {
                                     "base_file": "${packages}/Surround/Surround.sublime-settings",
                                 }
                             },
                             {
                                 "caption": "Key Bindings",
-                                "command": "edit_settings", "args":
-                                {
+                                "command": "edit_settings", "args": {
                                     "base_file": "${packages}/Surround/keymaps/Default ($platform).sublime-keymap",
                                     "default": "${packages}/User/Default ($platform).sublime-keymap"
                                 }

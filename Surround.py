@@ -166,7 +166,7 @@ class SurroundChangeCommand(sublime_plugin.TextCommand):
         return nxt if nr_openers % 2 == 0 else self.find_end(nxt.end(), search)
 
     def find_between(self, from_pos, to_pos, to_find, flags):
-        # TODO: Sounds inefficient, better API calls?
+        # TODO: Seems inefficient, better API calls?
         return [
             find for find in self.view.find_all(to_find, flags)
             if find.end() <= to_pos

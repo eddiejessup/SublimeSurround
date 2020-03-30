@@ -1,8 +1,11 @@
 [
+  { "keys": ["ctrl+k", "ctrl+a"],
+    "command": "surround_add_with_prompt",
+  },
   { "keys": ["ctrl+k", "ctrl+c"],
-    "command": "surround_change",
+    "command": "surround_change_with_prompt",
   },
   { "keys": ["ctrl+k", "ctrl+shift+c"],
-    "command": "surround_delete",
+    "command": "surround_delete_with_prompt",
   },
 ]
