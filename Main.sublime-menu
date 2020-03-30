@@ -1,0 +1,50 @@
+[
+    {
+        "id": "selection",
+        "children":
+            [
+                { "caption": "-" },
+                {
+                    "caption": "Change surroundings",
+                    "command": "surround_change",
+                },
+                {
+                    "caption": "Delete surroundings",
+                    "command": "surround_delete",
+                },
+            ]
+    },
+    {
+        "id": "preferences",
+        "children":
+        [
+            {
+                "id": "package-settings",
+                "children":
+                [
+                    {
+                        "caption": "Surround",
+                        "children":
+                        [
+                            {
+                                "caption": "Settings",
+                                "command": "edit_settings", "args":
+                                {
+                                    "base_file": "${packages}/Surround/Surround.sublime-settings",
+                                }
+                            },
+                            {
+                                "caption": "Key Bindings",
+                                "command": "edit_settings", "args":
+                                {
+                                    "base_file": "${packages}/Surround/keymaps/Default ($platform).sublime-keymap",
+                                    "default": "${packages}/User/Default ($platform).sublime-keymap"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

@@ -1,0 +1,8 @@
+[
+  { "keys": ["super+k", "super+c"],
+    "command": "surround_change",
+  },
+  { "keys": ["super+k", "super+shift+c"],
+    "command": "surround_delete",
+  },
+]

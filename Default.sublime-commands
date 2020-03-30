@@ -1,0 +1,10 @@
+[
+    {
+        "caption": "Surround: Change surroundings",
+        "command": "surround_change",
+    },
+    {
+        "caption": "Surround: Delete surroundings",
+        "command": "surround_delete",
+    },
+]
