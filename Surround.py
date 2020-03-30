@@ -58,9 +58,9 @@ def taggify_for_search(surround_pair):
         return [open_tag, close_tag]
     return surround_pair
 
-# Add surroundings.
+# Commands to orchestrate input.
 
-class SurroundSelectionWindowCommand(sublime_plugin.WindowCommand):
+class SurroundAddWithPromptCommand(sublime_plugin.WindowCommand):
     """ Surround the selection with something. """
 
     def run(self):
@@ -68,26 +68,14 @@ class SurroundSelectionWindowCommand(sublime_plugin.WindowCommand):
             "Surround with:",
             "",
             lambda s: self.window.active_view().run_command(
-                "surround_selection",
+                "surround_add",
                 dict(surround_char=s)
             ),
             None,
             None,
         )
 
-class SurroundSelectionCommand(sublime_plugin.TextCommand):
-    """ Surround the selection with something """
-
-    def run(self, edit, surround_char):
-        surround_pair = pair_replacement_char(surround_char)
-
-        for region in reversed(self.view.sel()):
-            self.view.insert(edit, region.end(), surround_pair[1])
-            self.view.insert(edit, region.begin(), surround_pair[0])
-
-# Change/delete surroundings.
-
-class SurroundChangeCommand(sublime_plugin.WindowCommand):
+class SurroundChangeWithPromptCommand(sublime_plugin.WindowCommand):
     """ Change the selection's surroundings. """
 
     def run(self):
@@ -96,7 +84,7 @@ class SurroundChangeCommand(sublime_plugin.WindowCommand):
                 "Replace with:",
                 "",
                 lambda r: self.window.active_view().run_command(
-                    "surround_change_text",
+                    "surround_change",
                     dict(match=match, replacement=r)
                 ),
                 None,
@@ -111,7 +99,7 @@ class SurroundChangeCommand(sublime_plugin.WindowCommand):
             None,
         )
 
-class SurroundDeleteCommand(sublime_plugin.WindowCommand):
+class SurroundDeleteWithPromptCommand(sublime_plugin.WindowCommand):
     """ Delete something surrounding something. """
 
     def run(self):
@@ -119,14 +107,26 @@ class SurroundDeleteCommand(sublime_plugin.WindowCommand):
             "Delete:",
             "",
             lambda m: self.window.active_view().run_command(
-                "surround_change_text",
+                "surround_change",
                 dict(match=m, replacement='')
             ),
             None,
             None,
         )
 
-class SurroundChangeTextCommand(sublime_plugin.TextCommand):
+# Commands to do the actual edits.
+
+class SurroundAddCommand(sublime_plugin.TextCommand):
+    """ Surround the selection with something """
+
+    def run(self, edit, surround_char):
+        surround_pair = pair_replacement_char(surround_char)
+
+        for region in reversed(self.view.sel()):
+            self.view.insert(edit, region.end(), surround_pair[1])
+            self.view.insert(edit, region.begin(), surround_pair[0])
+
+class SurroundChangeCommand(sublime_plugin.TextCommand):
     """ Change the selection's surroundings. """
 
     def run(self, edit, match, replacement):

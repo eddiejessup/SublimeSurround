@@ -40,9 +40,9 @@ TODO: Test and Document 'add surroundings'
 
 ### Low-level functionality
 
-The package provides the command, `surround_change`. This asks for two inputs: the character to search for (the 'match'), and the character to swap it with (the 'replacement'). It will then look up a pair of characters for the match character, and look for the nearest enclosing pair of those characters, and swap them with the pair of characters represented by the replacement character.
+The package provides the command, `surround_change_with_prompt`. This asks for two inputs: the character to search for (the 'match'), and the character to swap it with (the 'replacement'). It will then look up a pair of characters for the match character, and look for the nearest enclosing pair of those characters, and swap them with the pair of characters represented by the replacement character.
 
-There is also the `surround_delete` command, that only asks for a match character, and which simply removes the corresponding nearest pair.
+There is also the `surround_delete_with_prompt` command, that only asks for a match character, and which simply removes the corresponding nearest pair.
 
 ### Command-palette interface
 
@@ -54,21 +54,21 @@ The plugin adds menu entries under `Selection/{Change,Delete} surroundings`.
 
 ### Key-binding interface
 
-The plugin binds a shortcut, `"ctrl+k", "ctrl+c"` to run the `surround_change` command, or `"ctrl+k", "ctrl+shift+c"` to run the `surround_delete` command. On MacOS, the "super" (command) key is bound instead of the "ctrl" key.
+The plugin binds a shortcut, `"ctrl+k", "ctrl+c"` to run the `surround_change_with_prompt` command, or `"ctrl+k", "ctrl+shift+c"` to run the `surround_delete_with_prompt` command. On MacOS, the "super" (command) key is bound instead of the "ctrl" key.
 
-You can also define a keyboard shortcut which runs the commands with particular arguments, by binding a key pattern to the `surround_change_text` command with the arguments `match` and `replacement` specifying your intended find/replace characters.
+You can also define a keyboard shortcut which runs the commands with particular arguments, by binding a key pattern to the `surround_change` command with the arguments `match` and `replacement` specifying your intended find/replace characters. To delete surroundings, just set the replacement to an empty string.
 
 For example, to add shortcuts to replace `'` with `"` and vice versa, you might add the key bindings:
 
 ```
 {
     "keys": ["super+k", "super+'"],
-    "command": "surround_change_text",
+    "command": "surround_change",
     "args": { "match": "\"", "replacement": "'" }
 },
 {
     "keys": ["super+k", "super+shift+'"],
-    "command": "surround_change_text",
+    "command": "surround_change",
     "args": { "match": "'", "replacement": "\"" }
 }
 ```
